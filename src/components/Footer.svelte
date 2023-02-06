@@ -11,7 +11,6 @@
         link: string
         newTab: boolean
         iconPath?: string
-        iconAlt?: string
     }
 
     let footerLinks: FooterLink[] = [
@@ -119,31 +118,27 @@
         {
             link: "https://www.facebook.com",
             newTab: false,
-            iconPath: "/facebook.svg",
-            iconAlt: "facebook"
+            iconPath: "bi:facebook",
         },
         {
             link: "https://www.twitter.com",
             newTab: true,
-            iconPath: "/twitter.svg",
-            iconAlt: "twitter"
+            iconPath: "bi:twitter",
         },
         {
             link: "https://www.youtube.com",
             newTab: true,
-            iconPath: '/youtube.svg',
-            iconAlt: "youtube"
+            iconPath: 'bi:youtube',
         },
         {
             link: "https://www.instagram.com",
             newTab: true,
-            iconPath: "/instagram.svg",
-            iconAlt: "instagram"
+            iconPath: "bi:instagram",
         }
     ]
 </script>
 
-<footer class="px-6 py-16 bg-slate-500">
+<footer class="px-6 py-16 bg-slate-100">
     <div class="flex flex-wrap text-sm">
         {#each footerLinks as footerlink}
             <div class="flex flex-col mr-10 mb-8">
@@ -169,7 +164,7 @@
     <div class="mt-12">
         <div class="flex justify-between px-12">
             {#each iconLinks as iconLink}
-                <IconLink {...iconLink} />
+                <IconLink {...iconLink} height={"500"} width={"500"}/>
             {/each}
         </div>
         <div class="text-center font-bold text-sm mt-4">
