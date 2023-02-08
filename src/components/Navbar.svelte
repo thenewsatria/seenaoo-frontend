@@ -11,23 +11,24 @@
 </script>
 
 <header>
+    <!-- <img src="https://source.unsplash.com/WC6MJ0kRzGw/640x426" alt=""> -->
     <nav class="group" bind:this={navbar}>
-        <div class="bg-slate-100 px-5 py-4 flex justify-between items-center fixed w-full">
+        <div class="bg-slate-100 px-5 py-4 flex justify-between items-center fixed w-full z-10">
             <div class="">
                 <img class="h-8 w-auto" src="/webicon-blue.png" alt="Seenaoo Icon">
             </div>
             <button class="mr-4 h-9 w-9 flex items-center" on:click={navbarToggle}>
-                <Icon icon="humbleicons:bars" height="150" width="150" />
+                <Icon icon="humbleicons:bars" height="50" width="150" />
             </button>
         </div>
         <div class="bg-slate-100 h-full w-full fixed translate-x-full group-[.active]:translate-x-0 transition-all
-        duration-300 overflow-y-scroll">
+        duration-300 overflow-y-scroll z-20">
             <div class="flex justify-between items-center px-5 py-4">
                 <div class="">
                     <img class="h-8 w-auto" src="/webicon-blue.png" alt="Seenaoo Icon">
                 </div>
                 <button class="mr-4 h-9 w-9 flex items-center" on:click={navbarToggle}>
-                    <Icon icon="mdi:close-circle" color="red" height="150" width="150" />
+                    <Icon icon="mdi:close-circle" color="red" height="50" width="150" />
                 </button>
             </div>
             <div class="text-lg mt-10 flex flex-col justify-center mx-10">

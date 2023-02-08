@@ -164,7 +164,7 @@
     <div class="mt-12">
         <div class="flex justify-between px-12">
             {#each iconLinks as iconLink}
-                <IconLink {...iconLink} height={"500"} width={"500"}/>
+                <IconLink {...iconLink} height={"100"} width={"100"}/>
             {/each}
         </div>
         <div class="text-center font-bold text-sm mt-4">

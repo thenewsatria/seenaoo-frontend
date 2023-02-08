@@ -1,18 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.svelte';
 ---
 
 <Layout title="Welcome to Seenaoo | Seenaoo.">
-	<main>
-		<div class="h-[40rem] bg-red-200">
-			<p>Mantap</p>
-		</div>
-		<div class="h-[40rem] bg-blue-200">
-			<p>Mantap</p>
-		</div>
-		<div class="h-[40rem] bg-amber-200">
-			<p>Mantap</p>
-		</div>
+	<main class="">
+		<section class="pt-[4rem]">
+			<div class="bg-slate-100 relative w-full h-[95vh]">
+				<div class="absolute h-full w-full top-0 left-0">
+					<img class="h-full object-cover" src="https://source.unsplash.com/FWVMhUa_wbY/1920x1279" alt="">
+				</div>
+				<div class="absolute bg-slate-900/60 absolute h-full w-full top-0 left-0"></div>
+				<div class="absolute w-full translate-y-3">
+					<div class="mx-10 mt-20">
+						<h1 class="text-white font-bold text-[2rem]">Media kartu flashcard digital terbaik.</h1>
+						<p class="text-white mt-10 text-justify">Bergabunglah dengan lebih dari xx juta siswa menggunakan flashcard 
+						yang didukung oleh ilmu pembelajaran Seenaoo, tes latihan, dan solusi yang diverifikasi
+						oleh para ahli untuk meningkatkan nilai dan mencapai tujuan mereka.</p>
+						<button class="text-white font-bold px-10 py-3 mt-6 rounded-full bg-blue-600">Daftar gratis</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="bg-slate-100 px-4">
+			<div class="py-14 px-10">
+				<h2 class="font-bold text-xl text-center">90% siswa yang menggunakan Quizlet memberi tahu kalau mereka dapat nilai lebih tinggi.</h2>
+			</div>
+			<div>
+				<div class="rounded-xl overflow-hidden h-[13rem]">
+					<img class="object-cover" src="https://source.unsplash.com/377gw1wN0Ic/1920x1280" alt="">
+				</div>
+				<h2 class="font-bold text-xl mt-8 mx-5">Menghafal dengan lebih cepat secara gratis</h2>
+				<p class="mx-5 text-justify text-sm mt-4">Penelitian menunjukkan bahwa mengetes diri sendiri
+					 dengan kartu flashcard lebih efektif daripada membaca ulang catatan. Dari matematika,
+					 kedokteran hingga bahasa modern, Seenaoo digunakan oleh siswa di lebih dari 100 mata pelajaran yang berbeda.</p>
+				<button class="mt-6 rounded-full bg-blue-600 font-bold text-slate-100 px-10 py-3 mx-5">Ayo Mulai</button>
+			</div>
+			<div class="mt-20">
+				<div class="rounded-xl overflow-hidden h-[13rem]">
+					<img class="object-cover" src="https://source.unsplash.com/tMI2_-r5Nfo/1920x1280" alt="">
+				</div>
+				<div>
+					<h2 class="font-bold text-xl mt-8 mx-5">Gunakan Seenaoo untuk belajar bahkan disaat anda berpergian</h2>
+					<p class="mx-5 text-justify text-sm mt-4">Belajar kapanpun dan dimanapun dengan Seenaoo - dengan website kami yang
+						responsive. Kemajuan anda akan selalu tersinkronisasi.</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			
+		</section>
 	</main>
 </Layout>
