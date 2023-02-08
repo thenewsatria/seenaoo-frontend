@@ -138,10 +138,10 @@
     ]
 </script>
 
-<footer class="px-6 py-16 bg-slate-100">
-    <div class="flex flex-wrap text-sm">
+<footer class="px-6 py-16 bg-slate-100 md:px-12">
+    <div class="flex flex-wrap text-sm md:text-base">
         {#each footerLinks as footerlink}
-            <div class="flex flex-col mr-10 mb-8">
+            <div class="flex flex-col mr-10 mb-8 md:mr-16">
                 <h1 class="font-bold text-base mb-5">{footerlink.heading}</h1>
                 {#each footerlink.links as link, index}
                     {#if index == footerlink.links.length-1}
@@ -152,8 +152,8 @@
                 {/each}
             </div>
         {/each}
-        <div class="flex flex-col mr-10 mb-8">
-            <h1 class="font-bold text-base">Bahasa</h1>
+        <div class="flex flex-col mr-10 md:mr-20 mb-8">
+            <h1 class="font-bold text-base mb-5">Bahasa</h1>
             <select class="select select-bordered text-sm">
                 <option disabled selected>Pilih Bahasa</option>
                 <option>Bahasa Indonesia</option>
@@ -162,12 +162,12 @@
         </div>
     </div>
     <div class="mt-12">
-        <div class="flex justify-between px-12">
+        <div class="flex justify-between px-12 md:justify-evenly md:px-28">
             {#each iconLinks as iconLink}
                 <IconLink {...iconLink} height={"100"} width={"100"}/>
             {/each}
         </div>
-        <div class="text-center font-bold text-sm mt-4">
+        <div class="text-center font-bold text-sm mt-4 md:text-base md:mt-6">
             <p>&copy; 2023 Seenaoo, Inc.</p>
         </div>
     </div>
