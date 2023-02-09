@@ -162,7 +162,7 @@
         </div>
     </div>
     <div class="mt-12">
-        <div class="flex justify-between px-12 md:justify-evenly md:px-28">
+        <div class="flex justify-between px-12 md:justify-evenly md:px-28 lg:px-60">
             {#each iconLinks as iconLink}
                 <IconLink {...iconLink} height={"100"} width={"100"}/>
             {/each}

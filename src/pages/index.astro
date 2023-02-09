@@ -1,23 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.svelte';
 ---
 
 <Layout title="Welcome to Seenaoo | Seenaoo.">
 	<main class="">
 		<section class="pt-[4rem]">
-			<div class="bg-slate-100 relative w-full h-[95vh] md:h-[70vh]">
+			<div class="bg-slate-100 relative w-full h-[95vh] md:h-[70vh] lg:h-[95vh]">
 				<div class="absolute h-full w-full top-0 left-0">
 					<img class="h-full object-cover" src="https://source.unsplash.com/FWVMhUa_wbY/1920x1279" alt="">
 				</div>
 				<div class="absolute bg-slate-900/60 absolute h-full w-full top-0 left-0"></div>
 				<div class="absolute w-full translate-y-3">
-					<div class="mx-10 mt-20 md:mx-20">
+					<div class="mx-10 mt-20 md:mx-20 lg:w-1/2">
 						<h1 class="text-white font-bold text-[2rem] md:text-[2.5rem] md:mr-32">Media kartu flashcard digital terbaik.</h1>
 						<p class="text-white mt-10 text-justify md:text-lg md:mr-32">Bergabunglah dengan lebih dari xx juta siswa 
 						menggunakan flashcard yang didukung oleh ilmu pembelajaran Seenaoo, tes latihan, dan solusi yang diverifikasi
 						oleh para ahli untuk meningkatkan nilai dan mencapai tujuan mereka.</p>
-						<button class="text-white font-bold px-10 py-3 mt-6 
-						rounded-full bg-blue-600 md:mt-12 md:text-lg md:py-4 md:px-16">Daftar gratis</button>
+						<div class="mt-6 md:mt-12">
+							<Button label={"Daftar gratis"} client:load/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -27,24 +29,27 @@ import Layout from '../layouts/Layout.astro';
 				<h2 class="font-bold text-xl text-center md:text-[1.8rem] md:leading-normal">90% siswa yang menggunakan Seenaoo memberi
 				tahu kalau mereka dapat nilai lebih tinggi.</h2>
 			</div>
-			<div>
-				<div class="rounded-xl overflow-hidden">
+			<div class="lg:flex lg:flex-row-reverse lg:items-center lg:justify-between">
+				<div class="rounded-xl overflow-hidden lg:w-1/2">
 					<img class="" src="https://source.unsplash.com/377gw1wN0Ic/1920x1280" alt="">
 				</div>
-				<h2 class="font-bold text-xl mt-8 mx-5 md:text-[1.8rem] md:mt-14 md:leading-normal">Menghafal dengan lebih cepat secara gratis</h2>
-				<p class="mx-5 text-justify text-sm mt-4 md:text-lg md:mt-10">Penelitian menunjukkan bahwa mengetes diri sendiri
-					 dengan kartu flashcard lebih efektif daripada membaca ulang catatan. Dari matematika,
-					 kedokteran hingga bahasa modern, Seenaoo digunakan oleh siswa di lebih dari 100 mata pelajaran yang berbeda.</p>
-				<button class="mt-6 rounded-full bg-blue-600 font-bold 
-				text-slate-100 px-10 py-3 mx-5 md:text-lg md:py-4 md:px-16 md:mt-12">Ayo Mulai</button>
-			</div>
-			<div class="mt-20 md:mt-32">
-				<div class="rounded-xl overflow-hidden">
-					<img class="" src="https://source.unsplash.com/tMI2_-r5Nfo/1920x1280" alt="">
+				<div class="mx-5 lg:w-5/12">
+					<h2 class="font-bold text-xl mt-8 md:text-[1.8rem] md:mt-14 md:leading-normal lg:mt-0">Menghafal dengan lebih cepat secara gratis</h2>
+					<p class=" text-justify text-sm mt-4 md:text-lg md:mt-10">Penelitian menunjukkan bahwa mengetes diri sendiri
+						 dengan kartu flashcard lebih efektif daripada membaca ulang catatan. Dari matematika,
+						 kedokteran hingga bahasa modern, Seenaoo digunakan oleh siswa di lebih dari 100 mata pelajaran yang berbeda.</p>
+					<div class="mt-6 md:mt-12">
+						<Button label={"Ayo mulai"} client:visible/>
+					</div>
 				</div>
-				<div>
-					<h2 class="font-bold text-xl mt-8 mx-5 md:text-[1.8rem] md:mt-14 md:leading-normal">Gunakan Seenaoo untuk belajar bahkan disaat anda berpergian</h2>
-					<p class="mx-5 text-justify text-sm mt-4 md:text-lg md:mt-10">Belajar kapanpun dan dimanapun dengan Seenaoo - dengan website kami yang
+			</div>
+			<div class="mt-20 md:mt-32 lg:flex lg:items-center lg:justify-between">
+				<div class="rounded-xl overflow-hidden lg:w-1/2">
+					<img class="" src="https://source.unsplash.com/tMI2_-r5Nfo/1280x1280" alt="">
+				</div>
+				<div class="mx-5 lg:w-5/12">
+					<h2 class="font-bold text-xl mt-8 md:text-[1.8rem] md:mt-14 md:leading-normal lg:mt-0">Gunakan Seenaoo untuk belajar bahkan disaat anda berpergian</h2>
+					<p class="text-justify text-sm mt-4 md:text-lg md:mt-10">Belajar kapanpun dan dimanapun dengan Seenaoo - dengan website kami yang
 						responsive. Kemajuan anda akan selalu tersinkronisasi.</p>
 				</div>
 			</div>
@@ -54,7 +59,7 @@ import Layout from '../layouts/Layout.astro';
 				<h2 class="font-bold text-xl text-center md:text-[1.8rem] md:mx-20 md:leading-normal">Apa yang pengguna katakan tentang Seenaoo.</h2>
 			</div>
 			<div class="pb-10 flex flex-col md:flex-row md:flex-wrap md:justify-center md:gap-10 md:pb-20">
-				<div class="bg-slate-100 rounded-lg drop-shadow-lg overflow-hidden mx-10 mb-10 md:m-0 md:w-[45%]">
+				<div class="bg-slate-100 rounded-lg drop-shadow-lg overflow-hidden mx-10 mb-10 md:m-0 md:w-[45%] lg:w-[30%]">
 					<div class="h-[15rem] overflow-hidden">
 						<img class="object-cover" src="https://source.unsplash.com/d1UPkiFd04A/960x960" alt="">
 					</div>
@@ -65,7 +70,7 @@ import Layout from '../layouts/Layout.astro';
 						<p class="text-sm mt-6">Albertus, Mahasiswa tahun akhir, Perikanan</p>
 					</div>
 				</div>
-				<div class="bg-slate-100 rounded-lg drop-shadow-lg overflow-hidden mx-10 mb-10 md:m-0 md:w-[45%]">
+				<div class="bg-slate-100 rounded-lg drop-shadow-lg overflow-hidden mx-10 mb-10 md:m-0 md:w-[45%] lg:w-[30%]">
 					<div class="h-[15rem] overflow-hidden">
 						<img class="object-cover" src="https://source.unsplash.com/iFgRcqHznqg/960x960" alt="">
 					</div>
@@ -76,7 +81,7 @@ import Layout from '../layouts/Layout.astro';
 						<p class="text-sm mt-6">Herlambang, Mahasiswa semester 5, Ilmu Gizi</p>
 					</div>
 				</div>
-				<div class="bg-slate-100 rounded-lg drop-shadow-lg overflow-hidden mx-10 mb-10 md:m-0 md:w-[45%]">
+				<div class="bg-slate-100 rounded-lg drop-shadow-lg overflow-hidden mx-10 mb-10 md:m-0 md:w-[45%] lg:w-[30%]">
 					<div class="h-[15rem] overflow-hidden">
 						<img class="object-cover" src="https://source.unsplash.com/W7b3eDUb_2I/960x960" alt="">
 					</div>
@@ -90,23 +95,24 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</section>
 		<section>
-			<div class="px-4 bg-blue-200 py-10 md:px-12 md:py-20">
-				<div class="rounded-xl overflow-hidden">
-					<img src="https://source.unsplash.com/JyJwO0K5fWM/1920x1113" alt="">
+			<div class="px-4 bg-blue-200 py-10 md:px-12 md:py-20 lg:flex lg:flex-row-reverse lg:items-center lg:justify-between">
+				<div class="rounded-xl overflow-hidden lg:w-1/2">
+					<img src="https://source.unsplash.com/JyJwO0K5fWM/1000x1000" alt="">
 				</div>
-				<div class="mx-5">
+				<div class="mx-5 lg:w-5/12">
 					<div class="mt-8 md:mt-12">
 						<h2 class="uppercase font-bold md:text-xl">Guru</h2>
 						<h2 class="font-bold text-xl md:text-[1.8rem] md:mt-2">Berdayakan murid anda</h2>
 					</div>
-					<p class="text-sm text-justify mt-4 md:text-base md:mt-8">
+					<p class="text-justify mt-4 md:text-lg md:mt-8">
 						Bantu setiap siswa dengan percaya diri mempelajari apa saja, apa pun yang ingin mereka capai.
 						Dengan menggunakan set bahan pelajaran gratis, mode belajar, dan permainan Evaluasi di kelas dari Seenaoo,
 						Anda dapat langsung membuat pembelajaran di kelas jadi lebih aktif dan seru. Siswa dan guru dapat
 						mendaftar dan belajar secara gratis.
 					</p>
-					<button class="text-white font-bold px-10 py-3 mt-6 
-						rounded-full bg-blue-600 md:mt-12 md:text-lg md:py-4 md:px-16">Buat akun gratis</button>
+					<div class="mt-6 md:mt-12">
+						<Button label={"Buat akun gratis"} client:visible/>
+					</div>
 				</div>
 			</div>
 		</section>

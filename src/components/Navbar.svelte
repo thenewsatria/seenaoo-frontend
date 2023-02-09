@@ -1,5 +1,7 @@
 <script lang="ts">
     import Icon from "@iconify/svelte"
+    import LinkButton from "./LinkButton.svelte"
+
     let navbar: any
 
     function navbarToggle(){
@@ -8,7 +10,7 @@
 </script>
 
 <header>
-    <nav class="group" bind:this={navbar}>
+    <nav class="group lg:hidden" bind:this={navbar}>
         <div class="bg-slate-100 px-5 py-4 flex drop-shadow-lg justify-between items-center fixed w-full z-10 md:px-10">
             <div class="">
                 <img class="h-8 w-auto" src="/webicon-blue.png" alt="Seenaoo Icon">
@@ -53,12 +55,59 @@
                     </div>
                 </div>
                 <a class="p-4 pr-12" href="">About</a>
-                <div class="flex justify-between mx-3 gap-8 text-center mt-8 md:gap-16 md:mx-10">
-                    <a class="rounded-full flex-1 drop-shadow-md bg-blue-600
-                    font-bold text-white py-2 md:py-4" href="/login">Login</a>
-                    <a class="rounded-full flex-1 drop-shadow-md bg-slate-100
-                    border-2 border-blue-600 text-blue-600 2xl: font-bold py-2 md:py-4" href="/register">Register</a>
+                <div class="flex justify-between mx-3 gap-8 text-center mt-8 md:gap-16 md:mx-20">
+                    <LinkButton label={"Login"} additionalClass={"flex-1"}/>
+                    <LinkButton label={"Register"} 
+                    borderColor={"border-blue-600"} bgColor={"bg-transparent"} 
+                    textColor={"text-blue-600"} additionalClass={"flex-1"}/>
                 </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="hidden lg:block">
+        <div class="bg-slate-100 px-10 py-5 flex drop-shadow-lg justify-between items-center fixed w-full z-10">
+            <div class="w-2/12">
+                <img class="h-7 w-auto" src="/webicon-blue.png" alt="Seenaoo Icon">
+            </div>
+            <div class="w-9/12 flex justify-between items-center lg:text-sm">
+                <a href="#">Make Flashcard</a>
+                <a href="#">Why It Works</a>
+                <div class="dropdown dropdown-bottom dropdown-end">
+                    <label tabIndex={0} class="">Businesses</label>
+                    <ul tabIndex={0} class="dropdown-content menu p-2 
+                    shadow-lg border-2 bg-slate-100 translate-y-8 rounded-box w-52">
+                        <li>
+                            <a href="#">Employee Training</a>
+                        </li>
+                        <li>
+                            <a href="#">Content Partnership</a>
+                        </li>
+                        <li>
+                            <a href="#">Tutors & Resellers</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown dropdown-bottom dropdown-end">
+                    <label tabIndex={0} class="">Educators</label>
+                    <ul tabIndex={0} class="dropdown-content menu p-2 translate-y-8 shadow-lg bg-slate-100 rounded-box w-52">
+                        <li>
+                            <a href="#">Teachers & Professors</a>
+                        </li>
+                        <li>
+                            <a href="#">Content Partnership</a>
+                        </li>
+                        <li>
+                            <a href="#">Tutors & Resellers</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="">About</a>
+                <LinkButton label={"Login"} additionalClass={"lg:py-1 lg:px-4"}/>
+                <LinkButton label={"Register"} 
+                    borderColor={"border-blue-600"} bgColor={"bg-transparent"} 
+                    textColor={"text-blue-600"} additionalClass={"lg:py-1 lg:px-4"}/>
             </div>
         </div>
     </nav>
