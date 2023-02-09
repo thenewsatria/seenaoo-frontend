@@ -34,7 +34,7 @@
                 <a class="p-4 pr-12" href="#">Why It Works</a>
                 <div class="collapse collapse-arrow">
                     <input type="checkbox" /> 
-                    <div class="collapse-title font-medium">
+                    <div class="collapse-title">
                         Businesses
                     </div>
                     <div class="collapse-content flex flex-col"> 
@@ -45,7 +45,7 @@
                 </div>
                 <div class="collapse collapse-arrow">
                     <input type="checkbox" /> 
-                    <div class="collapse-title font-medium">
+                    <div class="collapse-title">
                         Educators
                     </div>
                     <div class="collapse-content flex flex-col"> 
@@ -55,10 +55,10 @@
                     </div>
                 </div>
                 <a class="p-4 pr-12" href="">About</a>
-                <div class="flex justify-between mx-3 gap-8 text-center mt-8 md:gap-16 md:mx-20">
-                    <LinkButton label={"Login"} additionalClass={"flex-1"}/>
+                <div class="flex justify-between mx-3 gap-8 text-center my-8 md:gap-16 md:mx-20">
+                    <LinkButton label={"Login"} noPadX additionalClass={"flex-1"}/>
                     <LinkButton label={"Register"} 
-                    borderColor={"border-blue-600"} bgColor={"bg-transparent"} 
+                    borderColor={"border-blue-600"} noPadX bgColor={"bg-transparent"} 
                     textColor={"text-blue-600"} additionalClass={"flex-1"}/>
                 </div>
             </div>
@@ -67,11 +67,11 @@
 
 
     <nav class="hidden lg:block">
-        <div class="bg-slate-100 px-10 py-5 flex drop-shadow-lg justify-between items-center fixed w-full z-10">
+        <div class="bg-slate-100 px-10 py-5 flex drop-shadow-lg justify-between items-center fixed w-full z-10 xl:px-20 2xl:px-32">
             <div class="w-2/12">
                 <img class="h-7 w-auto" src="/webicon-blue.png" alt="Seenaoo Icon">
             </div>
-            <div class="w-9/12 flex justify-between items-center lg:text-sm">
+            <div class="w-9/12 flex justify-between items-center lg:text-sm 2xl:text-base xl:w-7/12 2xl:w-7/12">
                 <a href="#">Make Flashcard</a>
                 <a href="#">Why It Works</a>
                 <div class="dropdown dropdown-bottom dropdown-end">

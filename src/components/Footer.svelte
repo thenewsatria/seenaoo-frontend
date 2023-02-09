@@ -138,10 +138,10 @@
     ]
 </script>
 
-<footer class="px-6 py-16 bg-slate-100 md:px-12">
-    <div class="flex flex-wrap text-sm md:text-base">
+<footer class="px-6 py-16 bg-slate-100 md:px-12 lg:px-20 xl:px-44 2xl:px-72">
+    <div class="flex flex-wrap justify-between text-sm md:text-base">
         {#each footerLinks as footerlink}
-            <div class="flex flex-col mr-10 mb-8 md:mr-16">
+            <div class="flex flex-col mr-10 mb-8">
                 <h1 class="font-bold text-base mb-5">{footerlink.heading}</h1>
                 {#each footerlink.links as link, index}
                     {#if index == footerlink.links.length-1}
@@ -161,8 +161,8 @@
             </select>
         </div>
     </div>
-    <div class="mt-12">
-        <div class="flex justify-between px-12 md:justify-evenly md:px-28 lg:px-60">
+    <div class="mt-12 2xl:mx-36">
+        <div class="flex justify-between px-12 md:justify-evenly md:px-44 lg:px-60 xl:px-72 2xl:px-44">
             {#each iconLinks as iconLink}
                 <IconLink {...iconLink} height={"100"} width={"100"}/>
             {/each}
