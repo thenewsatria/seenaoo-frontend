@@ -2,7 +2,7 @@
     import Icon from "@iconify/svelte"
     export let link: string = "#"
     export let newTab: boolean = false
-    export let iconPath: string = ""
+    export let iconPath: string = "file-icons:default"
     export let width: string = "16"
     export let height: string = "16"
 </script>

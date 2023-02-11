@@ -56,8 +56,8 @@
                 </div>
                 <a class="p-4 pr-12" href="">About</a>
                 <div class="flex justify-between mx-3 gap-8 text-center my-8 md:gap-16 md:mx-20">
-                    <LinkButton label={"Login"} noPadX additionalClass={"flex-1"}/>
-                    <LinkButton label={"Register"} 
+                    <LinkButton label={"Masuk"} linkURL={"/login"} noPadX additionalClass={"flex-1"}/>
+                    <LinkButton label={"Daftar"} 
                     borderColor={"border-blue-600"} noPadX bgColor={"bg-transparent"} 
                     textColor={"text-blue-600"} additionalClass={"flex-1"}/>
                 </div>
@@ -104,8 +104,8 @@
                     </ul>
                 </div>
                 <a href="">About</a>
-                <LinkButton label={"Login"} additionalClass={"lg:py-1 lg:px-4"}/>
-                <LinkButton label={"Register"} 
+                <LinkButton label={"Masuk"} linkURL={"/login"} additionalClass={"lg:py-1 lg:px-4"}/>
+                <LinkButton label={"Daftar"} 
                     borderColor={"border-blue-600"} bgColor={"bg-transparent"} 
                     textColor={"text-blue-600"} additionalClass={"lg:py-1 lg:px-4"}/>
             </div>
