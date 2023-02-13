@@ -20,11 +20,11 @@
 </script>
 
 <button class="flex items-center {buttonColor}
-    justify-center {noPadX ? "" : "px-10 md:px-12"} {noPadY ? "" : "py-3"}
+    justify-center {noPadX ? "" : "px-10 md:px-12"} {noPadY ? "" : "py-3 md:py-4"}
     {isRounded ? "rounded-lg" : "rounded-none"} border-2 {borderColor}
     {buttonAdditionalClass}">
     <div class="{height} {width} {iconMargin} flex items-center justify-center overflow-hidden {iconAdditionalClass} {iconColor}">
         <Icon icon={iconPath} width="100" height="100"/>
     </div>
-    <p class="{isBold ? "font-bold" : "font-normal"} {textColor} {labelAdditionalClass}">{label}</p>
+    <p class="{isBold ? "font-bold" : "font-normal"} text-sm md:text-base {textColor} {labelAdditionalClass}">{label}</p>
 </button>
