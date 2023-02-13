@@ -1,11 +1,20 @@
 <script lang="ts">
     import Icon from "@iconify/svelte"
-    import LinkButton from "./LinkButton.svelte"
+    import Button from "./Button.svelte";
 
     let navbar: any
 
     function navbarToggle(){
         navbar.classList.toggle("active")
+    }
+
+    function activateLoginPopup(){
+        document.querySelector('#login-popup')?.classList.add("active")
+        document.querySelector('#register-popup')?.classList.remove("active")
+    }
+    function activateRegisterPopup(){
+        document.querySelector('#register-popup')?.classList.add("active")
+        document.querySelector('#login-popup')?.classList.remove("active")
     }
 </script>
 
@@ -25,8 +34,8 @@
                 <div class="">
                     <img class="h-8 w-auto" src="/webicon-blue.png" alt="Seenaoo Icon">
                 </div>
-                <button class="mr-4 h-9 w-9 flex items-center" on:click={navbarToggle}>
-                    <Icon icon="mdi:close-circle" color="red" height="50" width="150" />
+                <button class="mr-4 h-10 w-10 flex items-center" on:click={navbarToggle}>
+                    <Icon icon="ic:round-close" height="50" width="150" />
                 </button>
             </div>
             <div class="text-lg mt-10 flex flex-col justify-center mx-10 md:mx-20 md:text-xl">
@@ -56,8 +65,8 @@
                 </div>
                 <a class="p-4 pr-12" href="">About</a>
                 <div class="flex justify-between mx-3 gap-8 text-center my-8 md:gap-16 md:mx-20">
-                    <LinkButton label={"Masuk"} linkURL={"/login"} noPadX additionalClass={"flex-1"}/>
-                    <LinkButton label={"Daftar"} 
+                    <Button label={"Masuk"} noPadX additionalClass={"flex-1"} onClickHandler={activateLoginPopup}/>
+                    <Button label={"Daftar"} onClickHandler={activateRegisterPopup}
                     borderColor={"border-blue-600"} noPadX bgColor={"bg-transparent"} 
                     textColor={"text-blue-600"} additionalClass={"flex-1"}/>
                 </div>
@@ -104,8 +113,8 @@
                     </ul>
                 </div>
                 <a href="">About</a>
-                <LinkButton label={"Masuk"} linkURL={"/login"} additionalClass={"lg:py-1 lg:px-4"}/>
-                <LinkButton label={"Daftar"} 
+                <Button label={"Masuk"} additionalClass={"lg:py-1 lg:px-4"} onClickHandler={activateLoginPopup}/>
+                <Button label={"Daftar"} onClickHandler={activateRegisterPopup}
                     borderColor={"border-blue-600"} bgColor={"bg-transparent"} 
                     textColor={"text-blue-600"} additionalClass={"lg:py-1 lg:px-4"}/>
             </div>

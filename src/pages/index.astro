@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.svelte';
+import LoginPopup from '../components/LoginPopup.svelte';
+import RegisterPopup from '../components/RegisterPopup.svelte';
 ---
 
 <Layout title="Welcome to Seenaoo | Seenaoo.">
 	<main class="">
+		<LoginPopup client:visible componentId={"login-popup"}/>
+		<RegisterPopup client:visible componentId={"register-popup"}/>
 		<section class="pt-[4rem] lg:pt-[4.5rem]">
 			<div class="bg-slate-100 relative w-full h-[95vh] md:h-[75vh] lg:h-[95vh] overflow-hidden">
 				<div class="absolute h-full w-full top-0 left-0">
