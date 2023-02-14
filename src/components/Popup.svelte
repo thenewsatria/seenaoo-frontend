@@ -14,11 +14,11 @@
     group-[.active]:translate-y-0 opacity-50 duration-300 group-[.active]:opacity-100 lg:w-1/2">
         <div class="">
             <div class="absolute z-20 w-1/2">
-                <p class="mt-10 ml-8 font-bold text-[1.9rem]">Belajar secara keras dan cerdas.</p>
+                <p class="mt-10 ml-8 font-bold text-[1.9rem] xl:ml-12 2xl:ml-16 xl:text-[2.3rem] 2xl:text-[2.5rem]">Belajar secara keras dan cerdas.</p>
             </div>
             <div class="absolute bg-white w-full h-full z-10 opacity-25"></div>
-            <div class="absolute bg-red-400 h-full">
-                <img class="object-cover h-full" src="https://source.unsplash.com/tLG2hcpITZE/1000x1000" alt="">
+            <div class="absolute h-full w-full">
+                <img class="object-cover h-full w-full" src="https://source.unsplash.com/tLG2hcpITZE/1000x1000" alt="">
             </div>
         </div>
     </div>

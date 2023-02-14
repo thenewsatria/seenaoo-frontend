@@ -12,7 +12,7 @@
 </script>
 
 <Popup popupId={componentId}>
-    <div class="mx-6 md:mx-20">
+    <div class="mx-6 md:mx-20 xl:mx-24 2xl:mx-44">
         <div class="flex">
             <p on:click={activateRegisterPopup}
             class="font-bold text-2xl mr-6 text-slate-500">Daftar</p>
@@ -41,7 +41,7 @@
             iconMargin={"mr-2 md:mr-4 lg:mr-2"}
             buttonAdditionalClass={"w-full py-2"}/>
         </div>
-        <div class="my-8 md:my-10 lg:my-8">
+        <div class="my-8 md:my-10 lg:my-8 xl:my-10 2xl:my-12">
             <div class="flex items-center justify-between">
                 <div class="h-[1px] flex-1 bg-slate-500"></div>
                 <div class="max-w-[80%] text-center mx-4">
