@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Popup from "./Popup.svelte";
     import IconButton from "./IconButton.svelte";
     import Button from "./Button.svelte";
+    import FullPopup from "./FullPopup.svelte";
 
     export let componentId: string = "componentId"
 
@@ -11,12 +11,12 @@
     }
 </script>
 
-<Popup popupId={componentId}>
+<FullPopup popupId={componentId}>
     <div class="mx-6 md:mx-20 xl:mx-24 2xl:mx-44">
         <div class="flex">
             <p on:click={activateRegisterPopup}
             class="font-bold text-2xl mr-6 text-slate-500">Daftar</p>
-            <p class="font-bold text-2xl text-slate-900">Masuk</p>
+            <p class="font-bold text-2xl text-teal-500">Masuk</p>
         </div>
         <div class="flex flex-col gap-4 mt-10">
             <IconButton label={"Masuk dengan Google"} 
@@ -83,4 +83,4 @@
                 class="text-teal-500 font-bold">Buat akun</span></p>
         </div>
     </div>
-</Popup>
+</FullPopup>
