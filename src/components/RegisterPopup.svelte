@@ -1,11 +1,92 @@
 <script lang="ts">
+    import axios from 'axios'
     import FullPopup from "./FullPopup.svelte";
     import IconButton from "./IconButton.svelte";
     import Button from "./Button.svelte";
 
     export let componentId: string = "componentId"
 
+    interface RegisterInput {
+        email: string
+        username: string
+        password: string
+    }
+
+    interface RegisterErrors {
+        email: boolean
+        username: boolean
+        password: boolean
+    }
+
+    interface RegisterLabel {
+        email: any
+        username: any
+        password: any
+    }
+
+    let loading: boolean = false
     let termCheckboxValue: boolean = false
+    let userInputValue: RegisterInput = {
+        email: "",
+        username: "",
+        password: ""
+    }
+
+    let inputsLabel: RegisterLabel = {
+        email: null,
+        username: null,
+        password: null,
+    }
+
+    let inputsError: RegisterErrors = {
+        email: false,
+        username: false,
+        password: false
+    }
+    
+    function setError(label: string, message:string, isActive:boolean) {
+        if (isActive) {
+            inputsError[label as keyof RegisterErrors] = true
+            inputsLabel[label as keyof RegisterLabel].innerHTML = message
+            inputsLabel[label as keyof RegisterLabel].classList.add("text-red-500")
+            inputsLabel[label as keyof RegisterLabel].classList.add("normal-case")
+        }else{
+            inputsError[label as keyof RegisterErrors] = false
+            inputsLabel[label as keyof RegisterLabel].innerHTML = label
+            inputsLabel[label as keyof RegisterLabel].classList.remove("text-red-500")
+            inputsLabel[label as keyof RegisterLabel].classList.remove("normal-case")
+        }
+    }
+
+    async function postRegister() {
+        try {
+            // set loading
+            loading = true
+
+            // reset message for new error if occured
+            for (const label of ["email", "username", "password"]) {
+                setError(label, label, false)
+            }
+            const response = await axios.post("http://localhost:8000/api/v1/auth/register", userInputValue)
+
+            // loading state is done
+            loading = false
+        } catch (error: any) {
+            loading = false
+            const errorData = error.response.data
+            if (errorData.status == 'fail') {
+                if (errorData.data.Email) {
+                    setError('email', errorData.data.Email, true)
+                }
+                if (errorData.data.Username) {
+                    setError('username', errorData.data.Username, true)
+                }
+                if (errorData.data.Password) {
+                    setError('password', errorData.data.Password, true)
+                }
+            }
+        }
+    }
 
     function toggleCheckbox() {
         termCheckboxValue = !termCheckboxValue
@@ -17,7 +98,7 @@
     }
 </script>
 
-<FullPopup popupId={componentId}>
+<FullPopup popupId={componentId} imageCaption={"Stop main tebak-tebakan saat mengerjakan tugas sekolah. Daftar hari ini"}>
     <div class="mx-6 md:mx-20 xl:mx-24 2xl:mx-44">
         <div class="flex">
             <p class="font-bold text-2xl mr-6 text-teal-500">Daftar</p>
@@ -58,22 +139,28 @@
         </div>
         <div>
             <div class="flex flex-col mb-5">
-                <input type="email" id="email" placeholder="satria123@seenaoo.com"
+                <input type="email" id="email" placeholder="satria123@seenaoo.com" bind:value={userInputValue.email} 
+                on:input={() => setError("email", "email", false)}
                 class="bg-transparent border-b-2 text-sm md:text-base py-1
-                border-b-slate-900 focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
-                <label class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="email">Email</label>
+                border-b-slate-900 {inputsError.email ? "border-b-red-500":""} focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
+                <label bind:this={inputsLabel.email}
+                class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="email">Email</label>
             </div>
             <div class="flex flex-col mb-5">
-                <input type="email" id="email" placeholder="satria123"
+                <input type="username" id="username" placeholder="satria123" bind:value={userInputValue.username}
+                on:input={() => setError("username", "username", false)}
                 class="bg-transparent border-b-2 text-sm md:text-base py-1
-                border-b-slate-900 focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
-                <label class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="username">username</label>
+                border-b-slate-900 {inputsError.username ? "border-b-red-500":""} focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
+                <label bind:this={inputsLabel.username}
+                class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="username">username</label>
             </div>
             <div class="flex flex-col mb-5">
                 <input type="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                class="bg-transparent border-b-2 text-sm py-1
+                bind:value={userInputValue.password} on:input={() => setError("password", "password", false)}
+                class="bg-transparent border-b-2 text-sm py-1 {inputsError.password ? "border-b-red-500":""}
                 border-b-slate-900 focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
-                <label class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="password">Password</label>
+                <label bind:this={inputsLabel.password}
+                class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="password">Password</label>
             </div>
             <div class="flex justify-between gap-2 2xl:gap-0">
                 <div class="w-1/12 flex justify-center">
@@ -87,7 +174,11 @@
         </div>
         <div class="mt-8">
             {#if termCheckboxValue}
-                <Button label={"Daftar"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'}/>
+                {#if loading}
+                    <p>Tunggu Sebentar ...</p>
+                {:else} 
+                    <Button label={"Daftar"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'} onClickHandler={postRegister}/>
+                {/if}
             {:else}
                 <Button label={"Daftar"} pill={false} bgColor={"bg-slate-300"} additionalClass={'w-full py-4'}/>
             {/if}

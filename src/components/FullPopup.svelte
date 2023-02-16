@@ -1,6 +1,8 @@
 <script lang="ts">
     import Icon from "@iconify/svelte"
     export let popupId: string = "popup"
+    export let sourceImg: string = "https://source.unsplash.com/tLG2hcpITZE/1000x1000"
+    export let imageCaption: string = "Belajar secara keras dan cerdas."
 
     let popup: any
 
@@ -13,12 +15,13 @@
     <div class="w-full h-full fixed hidden lg:block z-30 bg-slate-500 overflow-hidden -translate-y-full 
     group-[.active]:translate-y-0 opacity-50 duration-300 group-[.active]:opacity-100 lg:w-1/2">
         <div class="">
-            <div class="absolute z-20 w-1/2">
-                <p class="mt-10 ml-8 font-bold text-[1.9rem] xl:ml-12 2xl:ml-16 xl:text-[2.3rem] 2xl:text-[2.5rem]">Belajar secara keras dan cerdas.</p>
+            <div class="absolute z-20 w-2/3">
+                <p class="mt-10 ml-8 font-bold text-[1.9rem] text-blue-800
+                xl:ml-12 2xl:ml-16 xl:text-[2.3rem] 2xl:text-[2.5rem]">{imageCaption}</p>
             </div>
-            <div class="absolute bg-white w-full h-full z-10 opacity-25"></div>
+            <div class="absolute bg-white w-full h-full z-10 opacity-50"></div>
             <div class="absolute h-full w-full">
-                <img class="object-cover h-full w-full" src="https://source.unsplash.com/tLG2hcpITZE/1000x1000" alt="">
+                <img class="object-cover h-full w-full" src={sourceImg} alt="">
             </div>
         </div>
     </div>
