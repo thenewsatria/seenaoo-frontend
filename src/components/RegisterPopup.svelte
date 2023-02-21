@@ -1,8 +1,13 @@
 <script lang="ts">
+    import Icon from "@iconify/svelte"
+
     import axios from 'axios'
     import FullPopup from "./FullPopup.svelte";
     import IconButton from "./IconButton.svelte";
     import Button from "./Button.svelte";
+
+    import {count, alerts} from '../stores/alertStores'
+    import Alert from "./Alert.svelte";
 
     export let componentId: string = "componentId"
 
@@ -58,6 +63,24 @@
         }
     }
 
+    // function displayAlert() {
+    //     document.getElementById('generalAlert')?.classList.toggle('active')
+    //     count.update(n => n + 1)
+    // }
+
+
+    // function addAlert() {
+    //     alerts.update(alertStacks => [...alertStacks, {
+    //         component: Alert,
+    //         props: {
+    //             alertId: window.performance.now(),
+    //             componentId: "registerErrorAlert",
+    //             alertCategory: "alert-error",
+    //             alertMessage: "Error 400 Bosq"
+    //         }
+    //     }])
+    // }
+
     async function postRegister() {
         try {
             // set loading
@@ -73,16 +96,34 @@
             loading = false
         } catch (error: any) {
             loading = false
-            const errorData = error.response.data
-            if (errorData.status == 'fail') {
-                if (errorData.data.Email) {
-                    setError('email', errorData.data.Email, true)
-                }
-                if (errorData.data.Username) {
-                    setError('username', errorData.data.Username, true)
-                }
-                if (errorData.data.Password) {
-                    setError('password', errorData.data.Password, true)
+            
+            const errorData = error.response
+            
+            if (errorData.status == 400) {
+                
+                alerts.update(alertStacks => [...alertStacks, {
+                    component: Alert,
+                    props: {
+                        alertId: window.performance.now(),
+                        componentId: "registerErrorAlert",
+                        alertCategory: "alert-error",
+                        alertMessage: "Error 400 Bosq"
+                    }
+                }])
+                
+                const responseBody = errorData.data
+
+                // if theres validation fail on request
+                if (responseBody.status == 'fail') {
+                    if (responseBody.data.Email) {
+                        setError('email', responseBody.data.Email, true)
+                    }
+                    if (responseBody.data.Username) {
+                        setError('username', responseBody.data.Username, true)
+                    }
+                    if (responseBody.data.Password) {
+                        setError('password', responseBody.data.Password, true)
+                    }
                 }
             }
         }
@@ -106,6 +147,9 @@
             class="font-bold text-2xl  text-slate-500">Masuk</p>
         </div>
         <div class="flex flex-col gap-4 mt-10">
+            <!-- <button class="px-5 py-3 bg-red-300" on:click={addAlert}>
+                Mantulsss
+            </button> -->
             <IconButton label={"Lanjutkan dengan nomor telepon"} 
             iconPath={"ic:baseline-phone-android"} borderColor={"border-slate-500"} noPadX textColor={"text-slate-500"} isBold
             iconColor={"text-slate-500"}
@@ -175,7 +219,11 @@
         <div class="mt-8">
             {#if termCheckboxValue}
                 {#if loading}
-                    <p>Tunggu Sebentar ...</p>
+                <div class="px-10 md:px-12 bg-slate-300 md:text-lg lg:text-base py-3 w-full py-4 flex items-center justify-center">
+                    <div class="w-7 h-7 flex items-center justify-center overflow-hidden animate-spin text-white">
+                        <Icon icon="mingcute:loading-fill" width="100" height="100"/>
+                    </div>
+                </div>
                 {:else} 
                     <Button label={"Daftar"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'} onClickHandler={postRegister}/>
                 {/if}

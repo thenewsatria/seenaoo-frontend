@@ -13,7 +13,7 @@
 
 <div class="group lg:flex" bind:this={popup} id={popupId}>
     <div class="w-full h-full fixed hidden lg:block z-30 bg-slate-500 overflow-hidden -translate-y-full 
-    group-[.active]:translate-y-0 opacity-50 duration-300 group-[.active]:opacity-100 lg:w-1/2">
+    group-[.active]:translate-y-0 opacity-0 duration-300 group-[.active]:opacity-100 lg:w-1/2">
         <div class="">
             <div class="absolute z-20 w-2/3">
                 <p class="mt-10 ml-8 font-bold text-[1.9rem] text-blue-800
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="w-full h-full fixed z-30 bg-slate-100 overflow-y-scroll -translate-y-full lg:translate-x-full 
-    group-[.active]:translate-y-0 opacity-50 duration-300 group-[.active]:opacity-100 lg:w-1/2">
+    group-[.active]:translate-y-0 opacity-0 duration-300 group-[.active]:opacity-100 lg:w-1/2">
         <div class="flex justify-end pt-4 px-5">
             <button class="mr-4 h-10 w-10 flex items-center" on:click={togglePopup}>
                 <Icon icon="ic:round-close" height="50" width="150" />
