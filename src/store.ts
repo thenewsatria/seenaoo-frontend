@@ -10,6 +10,4 @@ interface Alert {
     }
 }
 
-export const count: Writable<number> = writable(0);
-
 export const alerts: Writable<Alert[]> = writable([])

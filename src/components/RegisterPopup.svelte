@@ -1,12 +1,12 @@
 <script lang="ts">
     import Icon from "@iconify/svelte"
 
-    import axios from 'axios'
+    import axios, { AxiosError } from 'axios'
     import FullPopup from "./FullPopup.svelte";
     import IconButton from "./IconButton.svelte";
     import Button from "./Button.svelte";
 
-    import {count, alerts} from '../stores/alertStores'
+    import {alerts} from '../store'
     import Alert from "./Alert.svelte";
 
     export let componentId: string = "componentId"
@@ -63,24 +63,6 @@
         }
     }
 
-    // function displayAlert() {
-    //     document.getElementById('generalAlert')?.classList.toggle('active')
-    //     count.update(n => n + 1)
-    // }
-
-
-    // function addAlert() {
-    //     alerts.update(alertStacks => [...alertStacks, {
-    //         component: Alert,
-    //         props: {
-    //             alertId: window.performance.now(),
-    //             componentId: "registerErrorAlert",
-    //             alertCategory: "alert-error",
-    //             alertMessage: "Error 400 Bosq"
-    //         }
-    //     }])
-    // }
-
     async function postRegister() {
         try {
             // set loading
@@ -94,36 +76,78 @@
 
             // loading state is done
             loading = false
-        } catch (error: any) {
-            loading = false
-            
-            const errorData = error.response
-            
-            if (errorData.status == 400) {
-                
+
+            console.log(response)
+
+            if (response.status == 201) {
                 alerts.update(alertStacks => [...alertStacks, {
                     component: Alert,
                     props: {
                         alertId: window.performance.now(),
-                        componentId: "registerErrorAlert",
-                        alertCategory: "alert-error",
-                        alertMessage: "Error 400 Bosq"
+                        componentId: "registerSuccessAlert",
+                        alertMessage: `Success: Successfully register an account. redirecting ...`
                     }
                 }])
-                
-                const responseBody = errorData.data
 
-                // if theres validation fail on request
-                if (responseBody.status == 'fail') {
-                    if (responseBody.data.Email) {
-                        setError('email', responseBody.data.Email, true)
-                    }
-                    if (responseBody.data.Username) {
-                        setError('username', responseBody.data.Username, true)
-                    }
-                    if (responseBody.data.Password) {
-                        setError('password', responseBody.data.Password, true)
-                    }
+                const responseData = response.data
+
+                // save accesstoken and refresh token
+                localStorage.setItem('seenaoo-accessToken', responseData.data.accessToken)
+                localStorage.setItem('seenaoo-refreshToken', responseData.data.refreshToken)
+                
+                // redirecting to dashboard
+                window.location.assign('/dashboard')
+            }
+
+        } catch (error: any) {
+            loading = false
+            
+            console.log(error)
+
+            if (error instanceof AxiosError) {
+                const errorData = error.response
+            
+                switch (errorData?.status) {
+                    case 400:
+                        const responseBody = errorData.data
+
+                        // if theres validation fail on request
+                        if (responseBody.status == 'fail') {
+                            if (responseBody.data.Email) {
+                                setError('email', responseBody.data.Email, true)
+                            }
+                            if (responseBody.data.Username) {
+                                setError('username', responseBody.data.Username, true)
+                            }
+                            if (responseBody.data.Password) {
+                                setError('password', responseBody.data.Password, true)
+                            }
+                        }else{
+                            alerts.update(alertStacks => [...alertStacks, {
+                                component: Alert,
+                                props: {
+                                    alertId: window.performance.now(),
+                                    componentId: "registerWarningAlert",
+                                    alertCategory: "alert-warning",
+                                    alertMessage: `Warning: ${errorData.data.message}`
+                                }
+                            }])
+                        }
+                        break;
+                    case 500:
+                        alerts.update(alertStacks => [...alertStacks, {
+                            component: Alert,
+                            props: {
+                                alertId: window.performance.now(),
+                                componentId: "registerWarningAlert",
+                                alertCategory: "alert-error",
+                                alertMessage: `Error: ${errorData.data.message}`
+                            }
+                        }])
+                        break;
+                
+                    default:
+                        break;
                 }
             }
         }
@@ -147,9 +171,6 @@
             class="font-bold text-2xl  text-slate-500">Masuk</p>
         </div>
         <div class="flex flex-col gap-4 mt-10">
-            <!-- <button class="px-5 py-3 bg-red-300" on:click={addAlert}>
-                Mantulsss
-            </button> -->
             <IconButton label={"Lanjutkan dengan nomor telepon"} 
             iconPath={"ic:baseline-phone-android"} borderColor={"border-slate-500"} noPadX textColor={"text-slate-500"} isBold
             iconColor={"text-slate-500"}

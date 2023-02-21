@@ -1,5 +1,6 @@
 <script lang='ts'>
-    import {alerts} from '../stores/alertStores'
+  import { onDestroy } from 'svelte';
+    import {alerts} from '../store'
 
     interface AlertItem {
         component: any
@@ -15,9 +16,13 @@
 
     alerts.subscribe(alertsArray => {
         alertStack = alertsArray
-        console.log("isi dari alert stack")
-        console.log(alertStack)
     })
+
+    let unsubscribe = alerts.subscribe(alertsArray => {
+        alertStack = alertsArray
+    })
+
+    onDestroy(unsubscribe)
 </script>
 
 <div>
