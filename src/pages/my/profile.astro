@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LinkButton from '../../components/LinkButton.svelte';
+---
+
+<Layout title="Welcome to Seenaoo | Seenaoo.">
+	<main class="pt-[4rem] lg:pt-[4.5rem]">
+        <section>
+            <div class="flex items-center bg-blue-600 px-8 py-8">
+                <div class="w-[20%] flex justify-center">
+                    <div class="overflow-hidden rounded-full h-full w-auto">
+                        <img class="h-full object-cover" src="https://via.placeholder.com/150" alt="profile image">
+                    </div>
+                </div>
+                <p class="text-white font-bold text-xl w-[80%] ml-4">
+                    Nama Pengguna
+                </p>
+            </div>
+        </section>
+        <section class="px-6">
+            <div class="mt-10 mb-16">
+                <h1 class="font-bold mb-8">Classes Created (0)</h1>
+                <div>
+                    <div class="bg-slate-200 flex items-center rounded-lg p-3 mb-4">
+                        <div>
+                            <div class="h-20 w-20">
+                                <img src="https://via.placeholder.com/150" alt="Vocab workout image">
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="font-bold mb-2">Vocab Workout</p>
+                            <div class="flex">
+                                <p class="text-xs text-slate-500">1222 cards</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-200 flex items-center rounded-lg p-3">
+                        <div>
+                            <div class="h-20 w-20">
+                                <img src="https://via.placeholder.com/150" alt="Vocab workout image">
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="font-bold mb-2">Vocab Workout</p>
+                            <div class="flex">
+                                <p class="text-xs text-slate-500">1222 cards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 mb-16">
+                <h1 class="font-bold mb-8">Classes Studying (0)</h1>
+                <div>
+                    <div class="bg-slate-200 flex items-center rounded-lg p-3 mb-4">
+                        <div>
+                            <div class="h-20 w-20">
+                                <img src="https://via.placeholder.com/150" alt="Vocab workout image">
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="font-bold mb-2">Vocab Workout</p>
+                            <div class="flex">
+                                <p class="text-xs text-slate-500">1222 cards</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-200 flex items-center rounded-lg p-3">
+                        <div>
+                            <div class="h-20 w-20">
+                                <img src="https://via.placeholder.com/150" alt="Vocab workout image">
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="font-bold mb-2">Vocab Workout</p>
+                            <div class="flex">
+                                <p class="text-xs text-slate-500">1222 cards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="px-6">
+            <div class="mt-8 mb-16">
+                <h1 class="font-bold mb-8">About Seenaoo</h1>
+                <div class="h-[13rem] overflow-hidden">
+                    <img class="object-cover" src="https://source.unsplash.com/Oaqk7qqNh_c/1920x1280" alt="about">
+                </div>
+                <div class="mt-4">
+                    <p class="text-sm text-justify text-slate-500">Brainscape menggunakan algoritme pembelajaran adaptif yang kami sebut Pengulangan Berbasis Keyakinan. Platform kami terbukti secara ilmiah untuk membantu Anda belajar lebih cepat dan mengingat lebih lama.</p>
+                </div>
+                <div class="flex mt-4 gap-8 justify-">
+                    <LinkButton label={'Cari Flashcard'} linkURL={'#'} isBold={false}
+                    additionalClass={'px-5 py-3 flex-1 text-center text-sm'}/>
+                    <LinkButton label={'Buat Flashcard'} linkURL={'#'} bgColor={'bg-orange-500'} isBold={false}
+                    additionalClass={'px-5 py-3 flex-1 text-center text-sm'}/>
+                </div>
+            </div>
+        </section>
+	</main>
+</Layout>
