@@ -1,9 +1,97 @@
 <script lang="ts">
+    import Icon from "@iconify/svelte";
+    import axios, { AxiosError } from "axios";
+
     import IconButton from "./IconButton.svelte";
     import Button from "./Button.svelte";
     import FullPopup from "./FullPopup.svelte";
+    import Alert from "./Alert.svelte";
 
     export let componentId: string = "componentId"
+
+    import {alerts} from '../store'
+
+    interface LoginInput {
+        credential: string
+        password: string
+    }
+
+    let loading: boolean = false
+
+    let userInputValue: LoginInput = {
+        credential: "",
+        password: ""
+    }
+
+    async function onLogin(){
+        try {
+            loading = true
+            const response = await axios.post("http://localhost:8000/api/v1/auth/login", userInputValue)
+
+            // Check if success
+            if (response.status == 200) {
+                alerts.update(alertStacks => [...alertStacks, {
+                    component: Alert,
+                    props: {
+                        alertId: window.performance.now(),
+                        componentId: "registerSuccessAlert",
+                        alertMessage: `Success: Successfully login. redirecting ...`
+                    }
+                }])
+
+                const responseData = response.data
+
+                // save accesstoken and refresh token
+                localStorage.setItem('seenaoo-accessToken', responseData.data.accessToken)
+                localStorage.setItem('seenaoo-refreshToken', responseData.data.refreshToken)
+                
+                // redirecting to dashboard
+                window.location.assign('/dashboard')
+            }
+
+            loading = false
+        } catch (error) {
+            loading = false
+            
+            console.log(error)
+
+            if (error instanceof AxiosError) {
+                const errorData = error.response
+            
+                switch (errorData?.status) {
+                    case 400:
+                    case 403:
+                    case 404:
+                        console.log("Masuk 400")
+                        console.log(errorData)
+                        alerts.update(alertStacks => [...alertStacks, {
+                            component: Alert,
+                            props: {
+                                alertId: window.performance.now(),
+                                componentId: "registerWarningAlert",
+                                alertCategory: "alert-warning",
+                                alertMessage: `Warning: ${errorData.data.message}`
+                            }
+                        }])
+                        break;
+                    case 500:
+                        alerts.update(alertStacks => [...alertStacks, {
+                            component: Alert,
+                            props: {
+                                alertId: window.performance.now(),
+                                componentId: "registerWarningAlert",
+                                alertCategory: "alert-error",
+                                alertMessage: `Error: ${errorData.data.message}`
+                            }
+                        }])
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
 
     function activateRegisterPopup(){
         document.querySelector('#register-popup')?.classList.add("active")
@@ -52,13 +140,15 @@
         </div>
         <div>
             <div class="flex flex-col mb-5">
-                <input type="email" id="email" placeholder="Ketik alamat email atau nama pengguna anda"
+                <input type="text" id="credential" bind:value={userInputValue.credential}
+                placeholder="Ketik alamat email atau nama pengguna anda"
                 class="bg-transparent border-b-2 text-sm md:text-base py-1
                 border-b-slate-900 focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
-                <label class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="email">Email</label>
+                <label class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="credential">Email</label>
             </div>
             <div class="flex flex-col mb-2">
-                <input type="password" id="password" placeholder="Ketik alamat email atau nama pengguna anda"
+                <input type="password" id="password" bind:value={userInputValue.password}
+                placeholder="Ketik alamat email atau nama pengguna anda"
                 class="bg-transparent border-b-2 text-sm py-1
                 border-b-slate-900 focus:outline-0 focus:border-b-4 focus:border-b-amber-400 transition-all duration-200">
                 <label class="text-xs font-bold uppercase text-slate-500 mt-2 md:text-sm" for="password">Password</label>
@@ -73,7 +163,15 @@
                 dan <a class="text-teal-500" href="#">Kebijakan privasi</a> Seenaoo</p>
         </div>
         <div class="mt-8">
-            <Button label={"Masuk"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'}/>
+            {#if loading}
+                <div class="px-10 md:px-12 bg-slate-300 md:text-lg lg:text-base py-3 w-full py-4 flex items-center justify-center">
+                    <div class="w-7 h-7 flex items-center justify-center overflow-hidden animate-spin text-white">
+                        <Icon icon="mingcute:loading-fill" width="100" height="100"/>
+                    </div>
+                </div>
+            {:else}
+                <Button label={"Masuk"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'} onClickHandler={onLogin}/>
+            {/if}
         </div>
         <div class="text-center mt-2">
             <p class="text-xs md:text-base lg:text-sm">Jangan lupa untuk keluar dari Akun Anda yang diakses dari perangkat yang dipakai bersama</p>

@@ -63,7 +63,7 @@
         }
     }
 
-    async function postRegister() {
+    async function onRegister() {
         try {
             // set loading
             loading = true
@@ -72,13 +72,10 @@
             for (const label of ["email", "username", "password"]) {
                 setError(label, label, false)
             }
+            
             const response = await axios.post("http://localhost:8000/api/v1/auth/register", userInputValue)
 
-            // loading state is done
-            loading = false
-
-            console.log(response)
-
+            // Check if success
             if (response.status == 201) {
                 alerts.update(alertStacks => [...alertStacks, {
                     component: Alert,
@@ -99,6 +96,8 @@
                 window.location.assign('/dashboard')
             }
 
+            // loading state is done
+            loading = false
         } catch (error: any) {
             loading = false
             
@@ -246,7 +245,7 @@
                     </div>
                 </div>
                 {:else} 
-                    <Button label={"Daftar"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'} onClickHandler={postRegister}/>
+                    <Button label={"Daftar"} pill={false} bgColor={"bg-teal-500"} additionalClass={'w-full py-4'} onClickHandler={onRegister}/>
                 {/if}
             {:else}
                 <Button label={"Daftar"} pill={false} bgColor={"bg-slate-300"} additionalClass={'w-full py-4'}/>
